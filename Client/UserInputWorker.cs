@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 
 namespace Client
 {
@@ -16,13 +15,13 @@ namespace Client
 
                 if (string.IsNullOrEmpty(userInput))
                 {
-                    WritePortIsInvalid();
+                    WriteFilePathIsInvalid();
                     continue;
                 }
 
                 if (!File.Exists(userInput))
                 {
-                    Console.WriteLine("File didn't exists");
+                    WriteFileIsNotExists();
                     continue;
                 }
 
@@ -49,74 +48,14 @@ namespace Client
             }
         }
 
-        internal static Port GetPortFromUserInput()
+        private static void WriteFileIsNotExists()
         {
-            while (true)
-            {
-                Console.WriteLine("Enter port number: ");
-
-                var userInput = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(userInput))
-                {
-                    WritePortIsInvalid();
-                    continue;
-                }
-
-                int portNumber;
-                if (!int.TryParse(userInput, out portNumber))
-                {
-                    WritePortIsInvalid();
-                    continue;
-                }
-
-                var port = new Port {PortNumber = portNumber};
-
-                if (port.IsPortNumberValid())
-                {
-                    return port;
-                }
-
-                WritePortIsInvalid();
-            }
+            Console.WriteLine("File didn't exists");
         }
 
-
-        internal static ServerIp GetIpFromUserInput()
+        private static void WriteFilePathIsInvalid()
         {
-            while (true)
-            {
-                Console.WriteLine("Enter ip address: ");
-
-                var userInput = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(userInput))
-                {
-                    WriteIpIsInvalid();
-                    continue;
-                }
-
-                IPAddress ipAddress;
-                if (!IPAddress.TryParse(userInput, out ipAddress))
-                {
-                    WriteIpIsInvalid();
-                    continue;
-                }
-
-                var clientIp = new ServerIp {IpAddress = ipAddress};
-
-                return clientIp;
-            }
-        }
-
-        private static void WritePortIsInvalid()
-        {
-            Console.WriteLine("Port number is invalid\n");
-        }
-
-        private static void WriteIpIsInvalid()
-        {
-            Console.WriteLine("Ip address is invalid\n");
+            Console.Out.WriteLine("File path is invalid!");
         }
     }
 }

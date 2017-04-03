@@ -37,6 +37,9 @@
       <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NetworkExtension">
+      <HintPath>..\libraries\NetworkExtension.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,9 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="ServerIp.cs" />
-    <Compile Include="Port.cs" />
-    <Compile Include="PortExtensions.cs" />
+    <Compile Include="Disposable.cs" />
+    <Compile Include="ServerInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInputWorker.cs" />

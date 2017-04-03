@@ -1,4 +1,5 @@
 ﻿using System;
+using NetworkExtension;
 
 namespace Client
 {
@@ -6,10 +7,9 @@ namespace Client
     {
         private static void Main()
         {
-            var port = UserInputWorker.GetPortFromUserInput();
-            var clientIp = UserInputWorker.GetIpFromUserInput();
+            var serverInfo = new ServerInfo(ConnectionInfo.GetIpFromUserInput(), ConnectionInfo.GetPortFromUserInput());
 
-            using (var client = new Client(clientIp, port))
+            using (var client = new Client(serverInfo))
             {
                 try
                 {
