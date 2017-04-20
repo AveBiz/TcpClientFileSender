@@ -15,11 +15,16 @@ namespace Client
 
         private bool _disposed;
 
-        internal Client(ServerInfo serverInfo)
+        internal Client([NotNull] IPAddress ipAddress, Port port)
         {
+            if (ipAddress == null)
+            {
+                throw new ArgumentNullException(nameof(ipAddress));
+            }
+
             _tcpClient = new TcpClient();
 
-            _ipEndPoint = new IPEndPoint(serverInfo.IpAddress, serverInfo.Port.PortNumber);
+            _ipEndPoint = new IPEndPoint(ipAddress, port.PortNumber);
         }
         
         internal void Send(string filePath)
@@ -54,7 +59,10 @@ namespace Client
                 return;
             }
 
-            _tcpClient.Close();
+            if (disposing)
+            {
+                _tcpClient.Close();
+            }
 
             _disposed = true;
         }

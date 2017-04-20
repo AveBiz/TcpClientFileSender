@@ -7,9 +7,7 @@ namespace Client
     {
         private static void Main()
         {
-            var serverInfo = new ServerInfo(ConnectionInfo.GetIpFromUserInput(), ConnectionInfo.GetPortFromUserInput());
-
-            using (var client = new Client(serverInfo))
+            using (var client = new Client(ConnectionInfo.GetIpFromUserInput(), ConnectionInfo.GetPortFromUserInput()))
             {
                 try
                 {

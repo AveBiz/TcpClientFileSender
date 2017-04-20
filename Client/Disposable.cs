@@ -10,6 +10,11 @@ namespace Client
             GC.SuppressFinalize(this);
         }
 
+        ~Disposable()
+        {
+            Dispose(false);
+        }
+
         protected abstract void Dispose(bool disposing);
     }
 }

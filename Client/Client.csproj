@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Disposable.cs" />
-    <Compile Include="ServerInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInputWorker.cs" />
