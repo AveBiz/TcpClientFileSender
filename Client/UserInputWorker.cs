@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace Client
 {
@@ -13,44 +12,13 @@ namespace Client
 
                 var userInput = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(userInput))
+                if (!string.IsNullOrWhiteSpace(userInput))
                 {
-                    WriteFilePathIsInvalid();
-                    continue;
+                    return userInput;
                 }
 
-                if (!File.Exists(userInput))
-                {
-                    WriteFileIsNotExists();
-                    continue;
-                }
-
-                FileStream fileStream;
-
-                try
-                {
-                    fileStream = File.OpenRead(userInput);
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.Message);
-                    continue;
-                }
-
-                if (!fileStream.CanRead)
-                {
-                    Console.WriteLine("Can't read this file");
-                }
-
-                fileStream.Close();
-
-                return userInput;
+                WriteFilePathIsInvalid();
             }
-        }
-
-        private static void WriteFileIsNotExists()
-        {
-            Console.WriteLine("File didn't exists");
         }
 
         private static void WriteFilePathIsInvalid()

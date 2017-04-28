@@ -36,11 +36,19 @@ namespace Client
 
                 SendFileName(filePath, clientSocket);
 
-                clientSocket.SendFile(filePath);
+                try
+                {
+                    clientSocket.SendFile(filePath);
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("Somthing went wrong when open file");
+                    throw;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Something went wrong when sending");
                 throw;
             }
         }
